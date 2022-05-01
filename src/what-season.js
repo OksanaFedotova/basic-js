@@ -11,9 +11,36 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
+const seasons = {
+  Jan: 'winter',
+  Feb: 'winter',
+  Dec: 'winter',
+
+  Mar: 'spring',
+  Apr: 'spring',
+  May: 'spring',
+
+  Jun: 'summer',
+  Jul: 'summer',
+  Aug: 'summer',
+
+  Sep: 'autumn',
+  Oct: 'autumn',
+  Nov: 'autumn',
+}
 function getSeason(date) {
-  const day = new Date(2019, 11, 22, 23, 45, 11, 500);
-  console.log(day)
+  let message = 'Unable to determine the time of year!'
+  let error = new Error('Invalid date!');
+  if(date === undefined) {
+    //console.log(message)
+    return message;
+  }
+  if (isNaN(Date.parse(date))) {
+    throw error;
+  }
+  const day = new Date(date);
+  const indicator = day.toDateString().split(' ')[1];
+  return seasons[indicator];
 }
 
 module.exports = {
