@@ -38,6 +38,12 @@ function getSeason(date) {
   if (isNaN(Date.parse(date))) {
     throw error;
   }
+ if(isNaN(date.getMonth())) {
+  throw error;
+  }
+if(!(Object.prototype.toString.call(date) === "[object Date]")) {
+throw error;
+}
   const day = new Date(date);
   const indicator = day.toDateString().split(' ')[1];
   return seasons[indicator];
@@ -46,4 +52,3 @@ function getSeason(date) {
 module.exports = {
   getSeason
 };
-getSeason()
